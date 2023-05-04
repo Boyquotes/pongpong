@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/Game.cs" type="Script" id=2]
+[ext_resource path="res://scene/Cup.tscn" type="PackedScene" id=3]
 
 [sub_resource type="LineShape2D" id=1]
 
@@ -27,3 +28,18 @@ shape = SubResource( 1 )
 
 [node name="Ball" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1004, 13 )
+
+[node name="Cup" parent="." instance=ExtResource( 3 )]
+position = Vector2( 898, 491 )
+
+[node name="Cup2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 813, 475 )
+
+[node name="Cup3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 750, 519 )
+
+[node name="Cup4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 694, 535 )
+
+[node name="Cup5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 820, 551 )
