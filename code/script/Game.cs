@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.CodeDom.Compiler;
 
-public class Game : Node2D
+public class Game : Node
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -33,7 +33,7 @@ public class Game : Node2D
 
                     // instantiate a new ball
                     var ball = (Ball)_Ball.Duplicate();
-                    AddChild(ball);
+                    _Ball.GetParent().AddChild(ball);
                     // ball.Position = mouseEvent.Position;
 
                     ball._rigidBody2D.Mode = RigidBody2D.ModeEnum.Rigid;
@@ -47,6 +47,8 @@ public class Game : Node2D
                     // generate a random number between 1 and 100
                     var random = new Random();
                     var randomNumber = random.Next(1, 100);
+
+                    GD.Print("randomNumber: ", randomNumber);
 
                     ball._rigidBody2D.ApplyCentralImpulse(new Vector2(-randomNumber, 0));
 

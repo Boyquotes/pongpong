@@ -6,40 +6,47 @@
 
 [sub_resource type="LineShape2D" id=1]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node"]
 script = ExtResource( 2 )
-_BallPath = NodePath("Ball")
+_BallPath = NodePath("ColorRect/ControlUpRight/Ball")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1024.0
-margin_bottom = 600.0
 color = Color( 0.298039, 0.533333, 0.352941, 1 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect"]
-position = Vector2( 512, 600 )
+[node name="ControlDown" type="Control" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ControlDown"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/ControlDown/StaticBody2D"]
 scale = Vector2( 8, 1 )
 shape = SubResource( 1 )
 
-[node name="Ball" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1004, 13 )
+[node name="Cup" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
+position = Vector2( 386, -109 )
 
-[node name="Cup" parent="." instance=ExtResource( 3 )]
-position = Vector2( 898, 491 )
+[node name="Cup2" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
+position = Vector2( 301, -125 )
 
-[node name="Cup2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 813, 475 )
+[node name="Cup3" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
+position = Vector2( 238, -81 )
 
-[node name="Cup3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 750, 519 )
+[node name="Cup4" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
+position = Vector2( 182, -65 )
 
-[node name="Cup4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 694, 535 )
+[node name="Cup5" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
+position = Vector2( 308, -49 )
 
-[node name="Cup5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 820, 551 )
+[node name="ControlUpRight" type="Control" parent="ColorRect"]
+anchor_left = 1.0
+anchor_right = 1.0
+
+[node name="Ball" parent="ColorRect/ControlUpRight" instance=ExtResource( 1 )]
+position = Vector2( -13, 13 )
