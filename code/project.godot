@@ -69,7 +69,7 @@ config={
 
 [application]
 
-config/name="pongpong"
+config/name="Pong Pong"
 run/main_scene="res://scene/Root.tscn"
 config/icon="res://icon.png"
 
