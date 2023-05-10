@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.CodeDom.Compiler;
+using System.Collections;
 
 public class Game : Node
 {
@@ -11,6 +12,7 @@ public class Game : Node
     [Export]
     public NodePath _BallPath;
 
+    private Node MobileAds;
 
     public Ball _Ball;
 
@@ -19,8 +21,16 @@ public class Game : Node
     public override void _Ready()
     {
         _Ball = GetNode<Ball>(_BallPath);
+        MobileAds = (Node)GetNode("/root/MobileAds");
+        MobileAds.Call("request_user_consent");
+        MobileAds.Connect("initialization_complete", this, nameof(_on_MobileAds_initialization_complete));
+
     }
 
+    private void _on_MobileAds_initialization_complete(int status, String _adapter_name)
+    {
+        MobileAds.Call("load_banner");
+    }
 
     public override void _Input(InputEvent inputEvent)
     {
