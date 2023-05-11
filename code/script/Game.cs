@@ -32,6 +32,14 @@ public class Game : Node
         MobileAds.Call("load_banner");
     }
 
+    // process
+    public override void _Process(float delta)
+    {
+        var v = Input.GetGyroscope();
+        v.Normalized();
+        ProjectSettings.SetSetting("physics/3d/default_gravity_vector", v);
+    }
+
     public override void _Input(InputEvent inputEvent)
     {
         if (inputEvent is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
