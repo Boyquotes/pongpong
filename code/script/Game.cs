@@ -37,7 +37,8 @@ public class Game : Node
     {
         var v = Input.GetGyroscope();
         v.Normalized();
-        ProjectSettings.SetSetting("physics/3d/default_gravity_vector", v);
+
+        Physics2DServer.AreaSetParam(GetViewport().FindWorld2d().Space, Physics2DServer.AreaParameter.GravityVector, v);
     }
 
     public override void _Input(InputEvent inputEvent)
