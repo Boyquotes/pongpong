@@ -9,6 +9,8 @@
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
 _BallPath = NodePath("ColorRect/ControlUpRight/Ball")
+_Label1Path = NodePath("CanvasLayer/Label")
+_Label2Path = NodePath("CanvasLayer/Label2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -50,3 +52,20 @@ anchor_right = 1.0
 
 [node name="Ball" parent="ColorRect/ControlUpRight" instance=ExtResource( 1 )]
 position = Vector2( -13, 13 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+text = "test"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+margin_top = 40.0
+margin_right = 40.0
+margin_bottom = 80.0
+text = "test"
+align = 1
+valign = 1

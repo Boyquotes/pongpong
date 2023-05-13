@@ -16,6 +16,12 @@ public class Game : Node
 
     public Ball _Ball;
 
+    [Export]
+    public NodePath _Label1Path, _Label2Path;
+
+
+    Label _Label1, _Label2, _Label3;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -25,6 +31,9 @@ public class Game : Node
         MobileAds.Call("request_user_consent");
         MobileAds.Connect("initialization_complete", this, nameof(_on_MobileAds_initialization_complete));
 
+
+        _Label1 = GetNode<Label>(_Label1Path);
+        _Label2 = GetNode<Label>(_Label2Path);
     }
 
     private void _on_MobileAds_initialization_complete(int status, String _adapter_name)
@@ -32,14 +41,22 @@ public class Game : Node
         MobileAds.Call("load_banner");
     }
 
+#if GODOT_ANDROID
     // process
     public override void _Process(float delta)
     {
-        var v = Input.GetGyroscope();
+        var v = Input.GetGravity();
+        v.z = 0;
+        v.y = -v.y;
+
         v.Normalized();
+
+        this._Label1.Text = "Gravity: " + v.ToString();
+        this._Label2.Text = "Gyroscope: " + Input.GetGyroscope().ToString();
 
         Physics2DServer.AreaSetParam(GetViewport().FindWorld2d().Space, Physics2DServer.AreaParameter.GravityVector, v);
     }
+#endif
 
     public override void _Input(InputEvent inputEvent)
     {
