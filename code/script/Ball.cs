@@ -21,7 +21,11 @@ public class Ball : Node2D
     }
 
 
+    void _on_RigidBody2D_body_shape_entered(RID rid, Node body, int bodyIndex, int shapeIndex)
+    {
 
+        _rigidBody2D.PhysicsMaterialOverride.Absorbent = true;
+    }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     //  public override void _Process(float delta)
