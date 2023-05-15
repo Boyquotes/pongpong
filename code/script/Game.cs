@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.PerformanceData;
 
 public class Game : Node
 {
@@ -10,11 +12,16 @@ public class Game : Node
     // private string b = "text";
 
     [Export]
-    public NodePath _BallPath;
+    public NodePath _ballPath, _downConPath;
+
+    [Export]
+    public PackedScene _cupScene;
 
     private Node MobileAds;
 
     public Ball _Ball;
+
+    public Control _downCon;
 
     [Export]
     public NodePath _Label1Path, _Label2Path;
@@ -23,14 +30,17 @@ public class Game : Node
     Label _Label1, _Label2, _Label3;
 
 
+    Random _random = new Random();
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _Ball = GetNode<Ball>(_BallPath);
+        _Ball = GetNode<Ball>(_ballPath);
         MobileAds = (Node)GetNode("/root/MobileAds");
         MobileAds.Call("request_user_consent");
         MobileAds.Connect("initialization_complete", this, nameof(_on_MobileAds_initialization_complete));
 
+        _downCon = GetNode<Control>(_downConPath);
 
         _Label1 = GetNode<Label>(_Label1Path);
         _Label2 = GetNode<Label>(_Label2Path);
@@ -41,10 +51,10 @@ public class Game : Node
         MobileAds.Call("load_banner");
     }
 
-#if GODOT_ANDROID
     // process
     public override void _Process(float delta)
     {
+#if GODOT_ANDROID
         var v = Input.GetGravity();
         v.z = 0;
         v.y = -v.y;
@@ -55,8 +65,27 @@ public class Game : Node
         this._Label2.Text = "Gyroscope: " + Input.GetGyroscope().ToString();
 
         Physics2DServer.AreaSetParam(GetViewport().FindWorld2d().Space, Physics2DServer.AreaParameter.GravityVector, v);
-    }
 #endif
+
+        var children = _downCon.GetChildren();
+        int count = 0;
+        foreach (var item in children)
+        {
+            if (item is Cup)
+            {
+                count++;
+            }
+        }
+        if (count < 3)
+        {
+            var cup = (Cup)_cupScene.Instance();
+            cup.Position = new Vector2(0, -_random.Next(30, 300));
+            _downCon.AddChild(cup);
+        }
+
+    }
+
+
 
     public override void _Input(InputEvent inputEvent)
     {
@@ -81,8 +110,8 @@ public class Game : Node
                     // ball._rigidBody2D.ApplyCentralImpulse(new Vector2(-100, 0));
 
                     // generate a random number between 1 and 100
-                    var random = new Random();
-                    var randomNumber = random.Next(1, 100);
+                    // var random = new Random();
+                    var randomNumber = _random.Next(10, 200);
 
                     GD.Print("randomNumber: ", randomNumber);
 

@@ -8,7 +8,9 @@
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
-_BallPath = NodePath("ColorRect/ControlUpRight/Ball")
+_ballPath = NodePath("ColorRect/ControlUpRight/Ball")
+_downConPath = NodePath("ColorRect/ControlDown")
+_cupScene = ExtResource( 3 )
 _Label1Path = NodePath("UI/Label")
 _Label2Path = NodePath("UI/Label2")
 
@@ -71,21 +73,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/ControlDown/StaticBody2D"]
 scale = Vector2( 8, 1 )
 shape = SubResource( 1 )
-
-[node name="Cup" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
-position = Vector2( 386, -109 )
-
-[node name="Cup2" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
-position = Vector2( 301, -125 )
-
-[node name="Cup3" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
-position = Vector2( 238, -81 )
-
-[node name="Cup4" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
-position = Vector2( 182, -65 )
-
-[node name="Cup5" parent="ColorRect/ControlDown" instance=ExtResource( 3 )]
-position = Vector2( 308, -49 )
 
 [node name="ControlUpRight" type="Control" parent="ColorRect"]
 anchor_left = 1.0
