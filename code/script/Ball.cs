@@ -23,7 +23,14 @@ public class Ball : Node2D
 
     void _on_RigidBody2D_body_shape_entered(RID rid, Node body, int bodyIndex, int shapeIndex)
     {
+        GD.Print("body: " + body.Name, _rigidBody2D.PhysicsMaterialOverride.Absorbent);
+        var mat = _rigidBody2D.PhysicsMaterialOverride;
 
+        // clone the material
+        _rigidBody2D.PhysicsMaterialOverride = new PhysicsMaterial();
+        _rigidBody2D.PhysicsMaterialOverride.Friction = mat.Friction;
+        _rigidBody2D.PhysicsMaterialOverride.Rough = mat.Rough;
+        _rigidBody2D.PhysicsMaterialOverride.Bounce = mat.Bounce;
         _rigidBody2D.PhysicsMaterialOverride.Absorbent = true;
     }
 
