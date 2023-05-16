@@ -42,25 +42,37 @@ public class Cup : Node2D
     void on_tween_all_completed1()
     {
         var space = GetViewport().Size;
+        space.x -= 30;
 
         _tween2.InterpolateProperty(this, "position", new Vector2(space.x / 2, Position.y), new Vector2(-space.x / 2, Position.y), 2f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         _tween2.Start();
 
 
-        GD.Print("tween1_all_completed");
+        // GD.Print("tween1_all_completed");
     }
 
     void on_tween_all_completed2()
     {
         var space = GetViewport().Size;
+        space.x -= 30;
 
         _tween1.InterpolateProperty(this, "position", new Vector2(-space.x / 2, Position.y), new Vector2(space.x / 2, Position.y), 2f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
 
         _tween1.Start();
 
-        GD.Print("tween2_all_completed");
+        // GD.Print("tween2_all_completed");
     }
 
+
+    void _on_Area2D_body_entered(Node body)
+    {
+        GD.Print("body: " + body);
+        if (body.GetParent() is Ball)
+        {
+            this.QueueFree();
+            body.QueueFree();
+        }
+    }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     //  public override void _Process(float delta)

@@ -21,9 +21,25 @@ public class Ball : Node2D
     }
 
 
+    public void delayQueueFree()
+    {
+        // queue free after 5 seconds
+        var timer = new Timer();
+        timer.WaitTime = 5f;
+        timer.OneShot = true;
+        AddChild(timer);
+        timer.Connect("timeout", this, nameof(_on_Timer_timeout));
+        timer.Start();
+    }
+
+    void _on_Timer_timeout()
+    {
+        QueueFree();
+    }
+
     void _on_RigidBody2D_body_shape_entered(RID rid, Node body, int bodyIndex, int shapeIndex)
     {
-        GD.Print("body: " + body.Name, _rigidBody2D.PhysicsMaterialOverride.Absorbent);
+        // GD.Print("body: " + body.Name, _rigidBody2D.PhysicsMaterialOverride.Absorbent);
         var mat = _rigidBody2D.PhysicsMaterialOverride;
 
         // clone the material

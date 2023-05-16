@@ -105,6 +105,7 @@ public class Game : Node
                     ball._rigidBody2D.CollisionLayer = 2;
                     ball._rigidBody2D.CollisionMask = 2;
 
+                    ball.delayQueueFree();
 
                     // add force to drop it to left
                     // ball._rigidBody2D.ApplyCentralImpulse(new Vector2(-100, 0));
@@ -113,7 +114,7 @@ public class Game : Node
                     // var random = new Random();
                     var randomNumber = _random.Next(10, 200);
 
-                    GD.Print("randomNumber: ", randomNumber);
+                    // GD.Print("randomNumber: ", randomNumber);
 
                     ball._rigidBody2D.ApplyCentralImpulse(new Vector2(-randomNumber, 0));
 
