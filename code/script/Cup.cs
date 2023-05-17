@@ -8,6 +8,10 @@ public class Cup : Node2D
     // private int a = 2;
     // private string b = "text";
 
+    // signal for cup disappear
+    [Signal]
+    public delegate void cupDisappear();
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -32,6 +36,8 @@ public class Cup : Node2D
         {
             on_tween_all_completed2();
         }
+
+        this.Connect(nameof(cupDisappear), Manager.Instance, nameof(Manager.on_cup_disappear));
     }
 
 
@@ -44,7 +50,7 @@ public class Cup : Node2D
         var space = GetViewport().Size;
         space.x -= 30;
 
-        _tween2.InterpolateProperty(this, "position", new Vector2(space.x / 2, Position.y), new Vector2(-space.x / 2, Position.y), 2f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        _tween2.InterpolateProperty(this, "position", new Vector2(space.x / 2, Position.y), new Vector2(-space.x / 2, Position.y), 3f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         _tween2.Start();
 
 
@@ -56,7 +62,7 @@ public class Cup : Node2D
         var space = GetViewport().Size;
         space.x -= 30;
 
-        _tween1.InterpolateProperty(this, "position", new Vector2(-space.x / 2, Position.y), new Vector2(space.x / 2, Position.y), 2f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        _tween1.InterpolateProperty(this, "position", new Vector2(-space.x / 2, Position.y), new Vector2(space.x / 2, Position.y), 3f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
 
         _tween1.Start();
 
@@ -71,6 +77,9 @@ public class Cup : Node2D
         {
             this.QueueFree();
             body.QueueFree();
+
+            // emit signal
+            EmitSignal(nameof(cupDisappear));
         }
     }
 

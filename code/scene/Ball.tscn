@@ -27,4 +27,4 @@ shape = SubResource( 1 )
 scale = Vector2( 0.101563, 0.101563 )
 texture = ExtResource( 1 )
 
-[connection signal="body_shape_entered" from="RigidBody2D" to="." method="_on_RigidBody2D_body_shape_entered"]
+[connection signal="body_entered" from="RigidBody2D" to="." method="_on_RigidBody2D_body_entered"]

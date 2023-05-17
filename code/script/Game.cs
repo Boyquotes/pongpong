@@ -26,8 +26,12 @@ public class Game : Node
     [Export]
     public NodePath _Label1Path, _Label2Path;
 
+    [Export]
+    public NodePath _labelScorePath;
 
-    Label _Label1, _Label2, _Label3;
+
+    Label _Label1, _Label2;
+    Label _labelScore;
 
 
     Random _random = new Random();
@@ -44,6 +48,10 @@ public class Game : Node
 
         _Label1 = GetNode<Label>(_Label1Path);
         _Label2 = GetNode<Label>(_Label2Path);
+
+        _labelScore = GetNode<Label>(_labelScorePath);
+
+        _labelScore.Text = "Score: " + Manager.Instance._score.ToString();
     }
 
     private void _on_MobileAds_initialization_complete(int status, String _adapter_name)
@@ -83,9 +91,8 @@ public class Game : Node
             _downCon.AddChild(cup);
         }
 
+        _labelScore.Text = "Score: " + Manager.Instance._score.ToString();
     }
-
-
 
     public override void _Input(InputEvent inputEvent)
     {
