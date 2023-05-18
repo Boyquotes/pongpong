@@ -9,9 +9,9 @@
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
-_ballPath = NodePath("ColorRect/ControlUpRight/Ball")
 _downConPath = NodePath("ColorRect/ControlDown")
 _cupScene = ExtResource( 3 )
+_ballScene = ExtResource( 1 )
 _Label1Path = NodePath("UI/Label")
 _Label2Path = NodePath("UI/Label2")
 _labelScorePath = NodePath("UI/LabelScore")
@@ -76,13 +76,6 @@ collision_mask = 2
 scale = Vector2( 8, 1 )
 shape = SubResource( 1 )
 
-[node name="ControlUpRight" type="Control" parent="ColorRect"]
-anchor_left = 1.0
-anchor_right = 1.0
-
-[node name="Ball" parent="ColorRect/ControlUpRight" instance=ExtResource( 1 )]
-position = Vector2( -13, 13 )
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="UI"]
@@ -109,6 +102,7 @@ margin_left = -28.5
 margin_top = -22.5
 margin_right = 28.5
 margin_bottom = 22.5
+grow_horizontal = 2
 custom_fonts/font = ExtResource( 4 )
 text = "test"
 align = 1

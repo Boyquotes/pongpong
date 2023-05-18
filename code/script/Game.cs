@@ -12,14 +12,14 @@ public class Game : Node
     // private string b = "text";
 
     [Export]
-    public NodePath _ballPath, _downConPath;
+    public NodePath _downConPath;
 
     [Export]
     public PackedScene _cupScene, _ballScene;
 
     private Node MobileAds;
 
-    public Ball _Ball;
+    // public Ball _Ball;
 
     public Control _downCon;
 
@@ -39,7 +39,7 @@ public class Game : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _Ball = GetNode<Ball>(_ballPath);
+        // _Ball = GetNode<Ball>(_ballPath);
         MobileAds = (Node)GetNode("/root/MobileAds");
         MobileAds.Call("request_user_consent");
         MobileAds.Connect("initialization_complete", this, nameof(_on_MobileAds_initialization_complete));
@@ -105,17 +105,17 @@ public class Game : Node
 
                     var space = GetViewport().Size;
 
-                    if (mouseEvent.Position.y > space.y / 2)
-                    {
-                        GD.Print("mouseEvent.Position.y > space.y / 2");
-                        return;
-                    }
+                    // if (mouseEvent.Position.y > space.y / 2)
+                    // {
+                    //     GD.Print("mouseEvent.Position.y > space.y / 2");
+                    //     return;
+                    // }
 
                     // instantiate a new ball
                     var ball = _ballScene.Instance<Ball>();
                     AddChild(ball);
 
-                    ball.Position = mouseEvent.Position;
+                    ball.Position = new Vector2(mouseEvent.Position.x, 30);
 
                     ball._rigidBody2D.Mode = RigidBody2D.ModeEnum.Rigid;
                     ball._rigidBody2D.CollisionLayer = 2;
