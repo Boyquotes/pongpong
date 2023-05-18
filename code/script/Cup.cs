@@ -27,7 +27,7 @@ public class Cup : Node2D
         // random pick 1 or 0
         var random = new Random();
         var bingo = random.Next(0, 2);
-        GD.Print("bingo: " + bingo);
+        // GD.Print("bingo: " + bingo);
         if (bingo == 0)
         {
             on_tween_all_completed1();

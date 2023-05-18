@@ -103,10 +103,19 @@ public class Game : Node
                 case ButtonList.Left:
                     // GD.Print("Left button was clicked at ", mouseEvent.Position);
 
+                    var space = GetViewport().Size;
+
+                    if (mouseEvent.Position.y > space.y / 2)
+                    {
+                        GD.Print("mouseEvent.Position.y > space.y / 2");
+                        return;
+                    }
+
                     // instantiate a new ball
                     var ball = (Ball)_Ball.Duplicate();
                     _Ball.GetParent().AddChild(ball);
-                    // ball.Position = mouseEvent.Position;
+
+                    ball.Position = mouseEvent.Position;
 
                     ball._rigidBody2D.Mode = RigidBody2D.ModeEnum.Rigid;
                     ball._rigidBody2D.CollisionLayer = 2;
@@ -119,11 +128,11 @@ public class Game : Node
 
                     // generate a random number between 1 and 100
                     // var random = new Random();
-                    var randomNumber = _random.Next(10, 200);
+                    // var randomNumber = _random.Next(10, 200);
 
                     // GD.Print("randomNumber: ", randomNumber);
 
-                    ball._rigidBody2D.ApplyCentralImpulse(new Vector2(-randomNumber, 0));
+                    // ball._rigidBody2D.ApplyCentralImpulse(new Vector2(-randomNumber, 0));
 
                     // ball._rigidBody2D.AddForce(Vector2.Zero, new Vector2(-100, 0));
 
