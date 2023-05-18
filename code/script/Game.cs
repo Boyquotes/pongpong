@@ -15,7 +15,7 @@ public class Game : Node
     public NodePath _ballPath, _downConPath;
 
     [Export]
-    public PackedScene _cupScene;
+    public PackedScene _cupScene, _ballScene;
 
     private Node MobileAds;
 
@@ -112,8 +112,8 @@ public class Game : Node
                     }
 
                     // instantiate a new ball
-                    var ball = (Ball)_Ball.Duplicate();
-                    _Ball.GetParent().AddChild(ball);
+                    var ball = _ballScene.Instance<Ball>();
+                    AddChild(ball);
 
                     ball.Position = mouseEvent.Position;
 
