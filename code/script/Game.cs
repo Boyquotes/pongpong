@@ -15,7 +15,7 @@ public class Game : Node
     public NodePath _downConPath;
 
     [Export]
-    public PackedScene _cupScene, _ballScene;
+    public PackedScene _cupScene, _ballScene, _fireScene;
 
     private Node MobileAds;
 
@@ -50,8 +50,20 @@ public class Game : Node
         _Label2 = GetNode<Label>(_Label2Path);
 
         _labelScore = GetNode<Label>(_labelScorePath);
-
         _labelScore.Text = "Score: " + Manager.Instance._score.ToString();
+
+        Manager.Instance._game = this;
+    }
+
+
+    public void on_cup_disappear(Vector2 position)
+    {
+        GD.Print("on_cup_disappear", position);
+
+        var firework = (Node2D)_fireScene.Instance();
+        firework.Position = position;
+        AddChild(firework);
+
     }
 
     private void _on_MobileAds_initialization_complete(int status, String _adapter_name)

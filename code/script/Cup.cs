@@ -38,6 +38,7 @@ public class Cup : Node2D
         }
 
         this.Connect(nameof(cupDisappear), Manager.Instance, nameof(Manager.on_cup_disappear));
+        this.Connect(nameof(cupDisappear), Manager.Instance._game, nameof(Manager.Instance._game.on_cup_disappear));
     }
 
 
@@ -79,7 +80,7 @@ public class Cup : Node2D
             body.QueueFree();
 
             // emit signal
-            EmitSignal(nameof(cupDisappear));
+            EmitSignal(nameof(cupDisappear), this.Position);
         }
     }
 

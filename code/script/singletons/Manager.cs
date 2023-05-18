@@ -9,8 +9,7 @@ public class Manager : Node
 
     public static Manager Instance;
 
-    Manager instance = null;
-
+    public Game _game = null;
 
     public override void _Ready()
     {
@@ -34,7 +33,7 @@ public class Manager : Node
         _score = (int)config.GetValue("user", "score", 0);
     }
 
-    public void on_cup_disappear()
+    public void on_cup_disappear(Vector2 position)
     {
         GD.Print("on_cup_disappear");
         _score++;

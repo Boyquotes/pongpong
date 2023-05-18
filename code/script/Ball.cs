@@ -38,7 +38,7 @@ public class Ball : Node2D
 
     void _on_RigidBody2D_body_entered(Node body)
     {
-        GD.Print("body: " + body.Name, _rigidBody2D.PhysicsMaterialOverride.Absorbent);
+        // GD.Print("body: " + body.Name, _rigidBody2D.PhysicsMaterialOverride.Absorbent);
         var mat = _rigidBody2D.PhysicsMaterialOverride;
 
         // clone the material
