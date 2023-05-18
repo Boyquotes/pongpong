@@ -109,6 +109,3 @@ custom_fonts/font = ExtResource( 4 )
 text = "test"
 align = 1
 valign = 1
-
-[node name="Node2D" parent="." instance=ExtResource( 5 )]
-position = Vector2( -136, 726 )
