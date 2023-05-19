@@ -80,7 +80,7 @@ public class Cup : Node2D
             body.QueueFree();
 
             // emit signal
-            EmitSignal(nameof(cupDisappear), this.Position);
+            EmitSignal(nameof(cupDisappear), this.GlobalPosition);
         }
     }
 

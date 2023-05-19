@@ -10,7 +10,7 @@ public class Fire : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-
+        GetChild<Particles2D>(0).Emitting = true;
     }
 
     void _on_Timer_timeout()

@@ -61,8 +61,8 @@ public class Game : Node
         GD.Print("on_cup_disappear", position);
 
         var firework = (Node2D)_fireScene.Instance();
-        firework.Position = position;
         AddChild(firework);
+        firework.GlobalPosition = position;
 
     }
 
@@ -134,6 +134,10 @@ public class Game : Node
                     ball._rigidBody2D.CollisionMask = 2;
 
                     ball.delayQueueFree();
+
+                    // var fire = (Node2D)_fireScene.Instance();
+                    // AddChild(fire);
+                    // fire.Position = mouseEvent.Position;
 
                     // add force to drop it to left
                     // ball._rigidBody2D.ApplyCentralImpulse(new Vector2(-100, 0));

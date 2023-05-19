@@ -9,6 +9,7 @@ bounce = 0.5
 [sub_resource type="CircleShape2D" id=1]
 
 [node name="Ball" type="Node2D"]
+scale = Vector2( 3, 3 )
 script = ExtResource( 2 )
 _rigidBody2DPath = NodePath("RigidBody2D")
 
