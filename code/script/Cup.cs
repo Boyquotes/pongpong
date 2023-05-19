@@ -49,9 +49,10 @@ public class Cup : Node2D
     void on_tween_all_completed1()
     {
         var space = GetViewport().Size;
-        space.x -= 30;
+        space.x -= 100;
 
-        _tween2.InterpolateProperty(this, "position", new Vector2(space.x / 2, Position.y), new Vector2(-space.x / 2, Position.y), 3f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        _tween2.InterpolateProperty(this, "position", new Vector2(space.x / 2, Position.y), new Vector2(-space.x / 2, Position.y), 3f,
+            Tween.TransitionType.Linear, Tween.EaseType.InOut);
         _tween2.Start();
 
 
@@ -61,9 +62,10 @@ public class Cup : Node2D
     void on_tween_all_completed2()
     {
         var space = GetViewport().Size;
-        space.x -= 30;
+        space.x -= 100;
 
-        _tween1.InterpolateProperty(this, "position", new Vector2(-space.x / 2, Position.y), new Vector2(space.x / 2, Position.y), 3f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        _tween1.InterpolateProperty(this, "position", new Vector2(-space.x / 2, Position.y), new Vector2(space.x / 2, Position.y), 3f,
+            Tween.TransitionType.Linear, Tween.EaseType.InOut);
 
         _tween1.Start();
 

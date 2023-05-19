@@ -38,6 +38,11 @@ public class Ball : Node2D
 
     void _on_RigidBody2D_body_entered(Node body)
     {
+        if (body.GetParent() is Ball)
+        {
+            return;
+        }
+
         // GD.Print("body: " + body.Name, _rigidBody2D.PhysicsMaterialOverride.Absorbent);
         var mat = _rigidBody2D.PhysicsMaterialOverride;
 

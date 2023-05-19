@@ -127,7 +127,7 @@ public class Game : Node
                     var ball = _ballScene.Instance<Ball>();
                     AddChild(ball);
 
-                    ball.Position = new Vector2(mouseEvent.Position.x, 30);
+                    ball.Position = new Vector2(mouseEvent.Position.x, 100);
 
                     ball._rigidBody2D.Mode = RigidBody2D.ModeEnum.Rigid;
                     ball._rigidBody2D.CollisionLayer = 2;
