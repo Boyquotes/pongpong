@@ -37,8 +37,8 @@ public class Cup : Node2D
             on_tween_all_completed2();
         }
 
-        this.Connect(nameof(cupDisappear), Manager.Instance, nameof(Manager.on_cup_disappear));
-        this.Connect(nameof(cupDisappear), Manager.Instance._game, nameof(Manager.Instance._game.on_cup_disappear));
+        // this.Connect(nameof(cupDisappear), Manager.Instance, nameof(Manager.on_cup_disappear));
+        // this.Connect(nameof(cupDisappear), Manager.Instance._game, nameof(Manager.Instance._game.on_cup_disappear));
     }
 
 

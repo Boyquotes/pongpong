@@ -11,8 +11,8 @@ public class Game : Node
     // private int a = 2;
     // private string b = "text";
 
-    [Export]
-    public NodePath _downConPath;
+    // [Export]
+    // public NodePath _downConPath;
 
     [Export]
     public PackedScene _cupScene, _ballScene, _fireScene;
@@ -21,16 +21,16 @@ public class Game : Node
 
     // public Ball _Ball;
 
-    public Control _downCon;
+    // public Control _downCon;
 
-    [Export]
-    public NodePath _Label1Path, _Label2Path;
+    // [Export]
+    // public NodePath _Label1Path, _Label2Path;
 
     [Export]
     public NodePath _labelScorePath;
 
 
-    Label _Label1, _Label2;
+    // Label _Label1, _Label2;
     Label _labelScore;
 
 
@@ -44,10 +44,10 @@ public class Game : Node
         MobileAds.Call("request_user_consent");
         MobileAds.Connect("initialization_complete", this, nameof(_on_MobileAds_initialization_complete));
 
-        _downCon = GetNode<Control>(_downConPath);
+        // _downCon = GetNode<Control>(_downConPath);
 
-        _Label1 = GetNode<Label>(_Label1Path);
-        _Label2 = GetNode<Label>(_Label2Path);
+        // _Label1 = GetNode<Label>(_Label1Path);
+        // _Label2 = GetNode<Label>(_Label2Path);
 
         _labelScore = GetNode<Label>(_labelScorePath);
         _labelScore.Text = "Score: " + Manager.Instance._score.ToString();
@@ -75,33 +75,33 @@ public class Game : Node
     public override void _Process(float delta)
     {
 #if GODOT_ANDROID
-        var v = Input.GetGravity();
-        v.z = 0;
-        v.y = -v.y;
+        // var v = Input.GetGravity();
+        // v.z = 0;
+        // v.y = -v.y;
 
-        v.Normalized();
+        // v.Normalized();
 
-        this._Label1.Text = "Gravity: " + v.ToString();
-        this._Label2.Text = "Gyroscope: " + Input.GetGyroscope().ToString();
+        // this._Label1.Text = "Gravity: " + v.ToString();
+        // this._Label2.Text = "Gyroscope: " + Input.GetGyroscope().ToString();
 
-        Physics2DServer.AreaSetParam(GetViewport().FindWorld2d().Space, Physics2DServer.AreaParameter.GravityVector, v);
+        // Physics2DServer.AreaSetParam(GetViewport().FindWorld2d().Space, Physics2DServer.AreaParameter.GravityVector, v);
 #endif
 
-        var children = _downCon.GetChildren();
-        int count = 0;
-        foreach (var item in children)
-        {
-            if (item is Cup)
-            {
-                count++;
-            }
-        }
-        if (count < 3)
-        {
-            var cup = (Cup)_cupScene.Instance();
-            cup.Position = new Vector2(0, -_random.Next(30, 300));
-            _downCon.AddChild(cup);
-        }
+        // var children = _downCon.GetChildren();
+        // int count = 0;
+        // foreach (var item in children)
+        // {
+        //     if (item is Cup)
+        //     {
+        //         count++;
+        //     }
+        // }
+        // if (count < 3)
+        // {
+        //     var cup = (Cup)_cupScene.Instance();
+        //     cup.Position = new Vector2(0, -_random.Next(30, 300));
+        //     _downCon.AddChild(cup);
+        // }
 
         _labelScore.Text = "Score: " + Manager.Instance._score.ToString();
     }
@@ -113,9 +113,15 @@ public class Game : Node
             switch ((ButtonList)mouseEvent.ButtonIndex)
             {
                 case ButtonList.Left:
+
+                    if (!Manager.Instance._ball._moving)
+                    {
+                        Manager.Instance._ball.go();
+                    }
+
                     // GD.Print("Left button was clicked at ", mouseEvent.Position);
 
-                    var space = GetViewport().Size;
+                    // var space = GetViewport().Size;
 
                     // if (mouseEvent.Position.y > space.y / 2)
                     // {
@@ -124,16 +130,16 @@ public class Game : Node
                     // }
 
                     // instantiate a new ball
-                    var ball = _ballScene.Instance<Ball>();
-                    AddChild(ball);
+                    // var ball = _ballScene.Instance<Ball>();
+                    // AddChild(ball);
 
-                    ball.Position = new Vector2(mouseEvent.Position.x, 100);
+                    // ball.Position = new Vector2(mouseEvent.Position.x, 100);
 
-                    ball._rigidBody2D.Mode = RigidBody2D.ModeEnum.Rigid;
-                    ball._rigidBody2D.CollisionLayer = 2;
-                    ball._rigidBody2D.CollisionMask = 2;
+                    // ball._rigidBody2D.Mode = RigidBody2D.ModeEnum.Rigid;
+                    // ball._rigidBody2D.CollisionLayer = 2;
+                    // ball._rigidBody2D.CollisionMask = 2;
 
-                    ball.delayQueueFree();
+                    // ball.delayQueueFree();
 
                     // var fire = (Node2D)_fireScene.Instance();
                     // AddChild(fire);

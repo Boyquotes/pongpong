@@ -10,6 +10,7 @@ public class Manager : Node
     public static Manager Instance;
 
     public Game _game = null;
+    public Ball _ball = null;
 
     public override void _Ready()
     {
@@ -33,17 +34,20 @@ public class Manager : Node
         _score = (int)config.GetValue("user", "score", 0);
     }
 
-    public void on_cup_disappear(Vector2 position)
-    {
-        GD.Print("on_cup_disappear");
-        _score++;
+    // public void on_cup_disappear(Vector2 position)
+    // {
+    //     GD.Print("on_cup_disappear");
+    //     _score++;
 
-        config.SetValue("user", "score", _score);
-        var err = config.Save("user://user.cfg");
-        if (err != Error.Ok)
-        {
-            GD.Print("err: " + err);
-        }
-    }
+    //     config.SetValue("user", "score", _score);
+    //     var err = config.Save("user://user.cfg");
+    //     if (err != Error.Ok)
+    //     {
+    //         GD.Print("err: " + err);
+    //     }
+    // }
+
+
+
 
 }
