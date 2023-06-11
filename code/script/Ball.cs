@@ -92,13 +92,13 @@ public class Ball : Node2D
         }
     }
 
-    public void go()
+    public void go(Vector2 position)
     {
         // speed = 250
         _speed = 250;
 
         // direction = Vector2(200, -200).normalized()
-        _direction = new Vector2(200, -200).Normalized();
+        _direction = (position - this.Position).Normalized();
 
         // velocity = speed * direction
         _velocity = _speed * _direction;

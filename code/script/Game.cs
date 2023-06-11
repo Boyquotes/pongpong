@@ -116,7 +116,7 @@ public class Game : Node
 
                     if (!Manager.Instance._ball._moving)
                     {
-                        Manager.Instance._ball.go();
+                        Manager.Instance._ball.go(mouseEvent.Position);
                     }
 
                     // GD.Print("Left button was clicked at ", mouseEvent.Position);
