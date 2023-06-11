@@ -80,13 +80,17 @@ public class Ball : Node2D
             var collisionInfo = _kineBody2D.MoveAndCollide(_velocity * delta);
             if (collisionInfo != null)
             {
-                // var body = collision_info.collider
-                var body = collisionInfo.Collider;
 
                 // velocity = velocity.bounce(collision_info.normal)
-                GD.Print("vel 1", _velocity);
                 _velocity = _velocity.Bounce(collisionInfo.Normal);
-                GD.Print("vel 2", _velocity);
+
+                // var body = collision_info.collider
+                var body = collisionInfo.Collider;
+                if (body is Brick brick)
+                {
+                    brick.free();
+                }
+
             }
 
         }
