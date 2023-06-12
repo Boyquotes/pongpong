@@ -90,6 +90,10 @@ public class Ball : Node2D
                 {
                     brick.free();
                 }
+                else
+                {
+                    _speed++;
+                }
 
             }
 

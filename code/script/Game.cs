@@ -103,7 +103,23 @@ public class Game : Node
         //     _downCon.AddChild(cup);
         // }
 
-        _labelScore.Text = "Score: " + Manager.Instance._score.ToString();
+        if (!_ticking)
+        {
+            return;
+        }
+
+        _timer += delta;
+
+        _labelScore.Text = "Score: " + _timer.ToString("N2");
+    }
+
+    float _timer = 0;
+    bool _ticking = false;
+
+    public void go()
+    {
+        _timer = 0;
+        _ticking = true;
     }
 
     public override void _Input(InputEvent inputEvent)
@@ -117,6 +133,7 @@ public class Game : Node
                     if (!Manager.Instance._ball._moving)
                     {
                         Manager.Instance._ball.go(mouseEvent.Position);
+                        Manager.Instance._game.go();
                     }
 
                     // GD.Print("Left button was clicked at ", mouseEvent.Position);

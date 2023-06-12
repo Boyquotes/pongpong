@@ -90,13 +90,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -28.5
+margin_left = -37.5
 margin_top = -22.5
-margin_right = 28.5
+margin_right = 37.5
 margin_bottom = 22.5
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 4 )
-text = "test"
+text = "GO!!!"
 align = 1
 valign = 1
 

@@ -16,7 +16,7 @@ public class Manager : Node
     {
         Instance = this;
 
-        initScore();
+        // initScore();
     }
 
     ConfigFile config = new ConfigFile();
