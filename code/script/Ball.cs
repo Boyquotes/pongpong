@@ -8,9 +8,9 @@ public class Ball : Node2D
     // private string b = "text";
 
     [Export]
-    public NodePath _kineBody2DPath;
+    public NodePath _rigidBody2DPath;
 
-    public KinematicBody2D _kineBody2D;
+    public RigidBody2D _rigidBody2D;
 
     public bool _moving = false;
 
@@ -18,8 +18,8 @@ public class Ball : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        // _rigidBody2D = GetNode<RigidBody2D>(_rigidBody2DPath);
-        _kineBody2D = GetNode<KinematicBody2D>(_kineBody2DPath);
+        _rigidBody2D = GetNode<RigidBody2D>(_rigidBody2DPath);
+        // _kineBody2D = GetNode<KinematicBody2D>(_kineBody2DPath);
 
         Manager.Instance._ball = this;
     }
@@ -72,33 +72,33 @@ public class Ball : Node2D
     // var velocity = Vector2()
     Vector2 _velocity = new Vector2();
 
-    public override void _PhysicsProcess(float delta)
-    {
-        if (_moving)
-        {
-            // var collision_info = move_and_collide(velocity * delta)
-            var collisionInfo = _kineBody2D.MoveAndCollide(_velocity * delta);
-            if (collisionInfo != null)
-            {
+    // public override void _PhysicsProcess(float delta)
+    // {
+    //     if (_moving)
+    //     {
+    //         // var collision_info = move_and_collide(velocity * delta)
+    //         var collisionInfo = _kineBody2D.MoveAndCollide(_velocity * delta);
+    //         if (collisionInfo != null)
+    //         {
 
-                // velocity = velocity.bounce(collision_info.normal)
-                _velocity = _velocity.Bounce(collisionInfo.Normal);
+    //             // velocity = velocity.bounce(collision_info.normal)
+    //             _velocity = _velocity.Bounce(collisionInfo.Normal);
 
-                // var body = collision_info.collider
-                var body = collisionInfo.Collider;
-                if (body is Brick brick)
-                {
-                    brick.free();
-                }
-                else
-                {
-                    _speed++;
-                }
+    //             // var body = collision_info.collider
+    //             var body = collisionInfo.Collider;
+    //             if (body is Brick brick)
+    //             {
+    //                 brick.free();
+    //             }
+    //             else
+    //             {
+    //                 _speed++;
+    //             }
 
-            }
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
     public void go(Vector2 position)
     {
@@ -107,6 +107,8 @@ public class Ball : Node2D
 
         // direction = Vector2(200, -200).normalized()
         _direction = (position - this.Position).Normalized();
+
+        _rigidBody2D.ApplyCentralImpulse(_direction * _speed);
 
         // velocity = speed * direction
         _velocity = _speed * _direction;
